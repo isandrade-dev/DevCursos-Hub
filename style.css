@@ -4,17 +4,15 @@
   padding: 0;
 }
 :root {
-  /* cores base */
-  --ink: #172036;          
-  --ink-soft: #5b6274;     
-  --paper: #f3f4ef;        
-  --card: #ffffff;         
-  --line: #dee1d6;         
-  --highlighter: #e4f24b;  
-  --coral: #ff6b4a;        
-  --green: #1f8a70;        
-  --amber: #c77d0a;        
-  /* tipografia */
+  --ink: #172036;
+  --ink-soft: #5b6274;
+  --paper: #f3f4ef;
+  --card: #ffffff;
+  --line: #dee1d6;
+  --highlighter: #e4f24b;
+  --coral: #ff6b4a;
+  --green: #1f8a70;
+  --amber: #c77d0a;
   --font-display: "Space Grotesk", "IBM Plex Sans", sans-serif;
   --font-body: "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -33,12 +31,10 @@ h1, h2, h3 {
 }
 a { color: inherit; }
 button { font-family: inherit; }
-/* ---------- 2. LAYOUT GERAL ---------- */
 .app {
   display: flex;
   min-height: 100vh;
 }
-/* Abas verticais (o "fichário") */
 .rail {
   width: 218px;
   flex-shrink: 0;
@@ -127,7 +123,6 @@ button { font-family: inherit; }
 }
 .view { display: none; }
 .view.is-active { display: block; }
-/* ---------- 3. CARTÕES DE ESTATÍSTICA (PAINEL) ---------- */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -172,7 +167,6 @@ button { font-family: inherit; }
   font-size: 0.85rem;
   margin: 0.25rem 0 1rem;
 }
-/* ---------- 4. "CONTINUAR ESTUDANDO" & CHIPS DE CATEGORIA ---------- */
 .continue-list {
   list-style: none;
   display: flex;
@@ -237,7 +231,6 @@ button { font-family: inherit; }
   font-family: var(--font-mono);
   color: var(--ink-soft);
 }
-/* ---------- 5. PAINEL DE FILTROS (CURSOS) ---------- */
 .filter-panel {
   background-color: var(--card);
   border: 1px solid var(--line);
@@ -285,7 +278,6 @@ button { font-family: inherit; }
   font-family: inherit;
 }
 .filter-group select:focus { border-color: var(--ink); }
-/* ---------- 6. CARTÃO DE CURSO ---------- */
 .course-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -418,7 +410,6 @@ button { font-family: inherit; }
   color: var(--ink-soft);
   font-size: 0.95rem;
 }
-/* ---------- 7. ÁREA DE PRÁTICA ---------- */
 .practice-header p {
   color: var(--ink-soft);
   margin-bottom: 1rem;
@@ -543,7 +534,6 @@ button { font-family: inherit; }
   color: var(--ink-soft);
   cursor: pointer;
 }
-/* ---------- 8. RESPONSIVO (CELULAR) ---------- */
 @media (max-width: 860px) {
   .app { flex-direction: column; }
   .rail {

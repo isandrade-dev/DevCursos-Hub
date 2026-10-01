@@ -151,8 +151,8 @@ function saveJSON(key, value) {
   }
 }
 let favorites = new Set(loadJSON(FAVORITES_KEY, []));
-let courseStatus = loadJSON(STATUS_KEY, {}); 
-let solved = new Set(loadJSON(CHALLENGES_KEY, [])); 
+let courseStatus = loadJSON(STATUS_KEY, {});
+let solved = new Set(loadJSON(CHALLENGES_KEY, []));
 function saveSolved() {
   saveJSON(CHALLENGES_KEY, [...solved]);
 }
@@ -169,7 +169,6 @@ function setCourseStatus(id, status) {
 function getCourseStatus(id) {
   return courseStatus[id] || 'none';
 }
-/* ---------- 4. ELEMENTOS DO DOM ---------- */
 const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
 const priceSelect = document.getElementById('priceSelect');
@@ -177,7 +176,6 @@ const levelSelect = document.getElementById('levelSelect');
 const statusSelect = document.getElementById('statusSelect');
 const courseGrid = document.getElementById('courseGrid');
 const favoriteGrid = document.getElementById('favoriteGrid');
-/* ---------- 5. CRIAÇÃO DO CARTÃO DE CURSO ---------- */
 const STATUS_LABELS = {
   none: 'Não iniciado',
   progress: 'Em andamento',
@@ -374,12 +372,10 @@ railTabs.forEach(tab => {
 filterCourses();
 renderDashboard();
 const LC_URL = 'https://leetcode.com/problems/';
-// lc(nome, slug, nível, tópicos, descrição)
 const lc = (title, slug, level, topics, description) =>
   ({ title, slug, level, topics, description, url: `${LC_URL}${slug}/` });
 
 const challenges = [
-  // ----- Facil -----
   lc('Add Two Integers', 'add-two-integers', 'Easy', ['Matemática'],
 'Some dois números inteiros. Ótimo para conhecer o formato da plataforma.'),
   lc('Two Sum', 'two-sum', 'Easy', ['Array', 'Hash Map'],
@@ -400,7 +396,6 @@ const challenges = [
     'Ache o maior lucro possível comprando e vendendo uma ação uma única vez.'),
   lc('Climbing Stairs', 'climbing-stairs', 'Easy', ['Programação dinâmica'],
     'Conte de quantas formas é possível subir uma escada de 1 ou 2 degraus por vez.'),
-  // ----- MÉDIO -----
   lc('Longest Substring Without Repeating Characters', 'longest-substring-without-repeating-characters', 'Medium', ['String', 'Janela deslizante'],
   'Encontre o maior trecho de uma string sem letras repetidas.'),
   lc('Group Anagrams', 'group-anagrams', 'Medium', ['String', 'Hash Map'],
@@ -421,7 +416,6 @@ const challenges = [
     'Conte quantas ilhas existem em uma grade de terra e água.'),
   lc('Longest Palindromic Substring', 'longest-palindromic-substring', 'Medium', ['String', 'Programação dinâmica'],
     'Ache o maior trecho de uma string que seja um palíndromo.'),
-  // ----- AVANÇADO -----
   lc('Median of Two Sorted Arrays', 'median-of-two-sorted-arrays', 'Hard', ['Array', 'Busca binária'],
     'Calcule a mediana de dois arrays ordenados em tempo logarítmico.'),
   lc('Regular Expression Matching', 'regular-expression-matching', 'Hard', ['String', 'Programação dinâmica'],
