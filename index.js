@@ -51,12 +51,9 @@ const baseCourses = [
     url: 'https://www.youtube.com/'
   }
 ];
- 
-// Playlists do canal freeCodeCamp.org (YouTube, conteúdo em inglês)
-// fcc(título, categoria, nível, nº de vídeos, id da playlist)
 const PLAYLIST_URL = 'https://www.youtube.com/playlist?list=';
 let nextId = baseCourses.length + 1;
- 
+
 function fcc(title, category, level, videos, listId) {
   return {
     id: String(nextId++),
@@ -64,13 +61,13 @@ function fcc(title, category, level, videos, listId) {
     provider: 'YouTube / freeCodeCamp.org',
     category,
     isFree: true,
-    level,           // null = não se aplica (podcast, eventos etc.)
-    rating: null,    // sem nota disponível
-    videos,          // null = quantidade não informada
+    level,          
+    rating: null,    
+    videos,          
     url: PLAYLIST_URL + listId
   };
 }
- 
+
 const freeCodeCampCourses = [
   fcc('HTML and CSS Tutorials', 'Front-end', 'Iniciante', 10, 'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88'),
   fcc('Python Tutorials', 'Programação', 'Iniciante', 12, 'PLWKjhJtqVAbnqBxcdjVGgT3uVR10bzTEB'),
@@ -120,7 +117,6 @@ const freeCodeCampCourses = [
   fcc('Talks', 'Carreira e Comunidade', null, 115, 'PLWKjhJtqVAbl9yptoxdSJDDoTVdcysyPo')
 ];
 const courses = [...baseCourses, ...freeCodeCampCourses];
-/* ---------- 2. CORES POR CATEGORIA ----------*/
 const CATEGORY_COLORS = {
   'Front-end': '#3b5ba9',
   'Back-end': '#6d4aae',
@@ -138,7 +134,6 @@ const CATEGORY_COLORS = {
 function categoryColor(category) {
   return CATEGORY_COLORS[category] || '#172036';
 }
-/* ---------- 3. PROGRESSO SALVO NO NAVEGADOR ---------- */
 const FAVORITES_KEY = 'devcourses-favorites';
 const STATUS_KEY = 'devcourses-status';
 const CHALLENGES_KEY = 'devcourses-solved';
@@ -153,7 +148,6 @@ function saveJSON(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
-    // sem localStorage: os dados valem só até fechar a página
   }
 }
 let favorites = new Set(loadJSON(FAVORITES_KEY, []));
@@ -233,8 +227,6 @@ function createCourseCard(course) {
   `;
   return card;
 }
-// Um único listener no grid cuida de favoritar e mudar status
-// (funciona mesmo para cartões criados depois, sem precisar religar nada).
 function wireCardEvents(container) {
   container.addEventListener('click', e => {
     const btn = e.target.closest('.fav-btn');
@@ -251,7 +243,6 @@ function wireCardEvents(container) {
 }
 if (courseGrid) wireCardEvents(courseGrid);
 if (favoriteGrid) wireCardEvents(favoriteGrid);
-/* ---------- 6. FILTROS E RENDERIZAÇÃO DO CATÁLOGO ---------- */
 function renderList(container, list, emptyText) {
   if (!container) return;
   container.innerHTML = '';
@@ -291,7 +282,7 @@ function renderFavorites() {
   if (!el) return;
   el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', filterCourses);
 });
-/* ---------- 7. PAINEL ---------- */
+
 const statRow = document.getElementById('statRow');
 const continueList = document.getElementById('continueList');
 const categoryChips = document.getElementById('categoryChips');
@@ -314,7 +305,7 @@ function renderDashboard() {
       <div class="stat-label">${s.label}</div>
     </div>
   `).join('');
-  // Continuar estudando
+
   if (continueList) {
     if (inProgress.length === 0) {
       continueList.innerHTML = `<li class="empty-note">Nenhum curso em andamento ainda. Vá até Cursos e marque um como "Em andamento".</li>`;
@@ -330,7 +321,6 @@ function renderDashboard() {
       `).join('');
     }
   }
-  // Cursos por categoria
   if (categoryChips) {
     const counts = {};
     courses.forEach(c => { counts[c.category] = (counts[c.category] || 0) + 1; });
@@ -355,7 +345,6 @@ function refreshAllViews() {
   renderFavorites();
   renderDashboard();
 }
-/* ---------- 8. NAVEGAÇÃO POR ABAS ---------- */
 const railTabs = document.querySelectorAll('.rail-tab');
 const viewTitleEl = document.getElementById('viewTitle');
 const viewSubtitleEl = document.getElementById('viewSubtitle');
@@ -382,12 +371,8 @@ function switchView(viewName) {
 railTabs.forEach(tab => {
   tab.addEventListener('click', () => switchView(tab.dataset.view));
 });
-// RENDERIZAÇÃO INICIAL
 filterCourses();
 renderDashboard();
-
-// 9. ÁREA DE PRÁTICA (LEETCODE)
-
 const LC_URL = 'https://leetcode.com/problems/';
 // lc(nome, slug, nível, tópicos, descrição)
 const lc = (title, slug, level, topics, description) =>
